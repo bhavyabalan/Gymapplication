@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+signup
+{% endblock title %}
+{% block head %}
+
+<h1>Login</h1>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form action="/login" method="POST">
+      {% csrf_token %}
+
+      <div class="input-box">
+      <br>  <input type="text" placeholder="Enter your name" name="uname" required>
+      </div>
+
+      <div class="input-box">
+       <br> <input type="password" placeholder="Enter password" name="password" required>
+      </div>
+
+
+      <div class="input-box button">
+        <br><input type="Submit" value="Login ">
+      </div>
+      <div class="text">
+        <a href="/signup"><h3>New User?</h3></a>
+      </div>
+    </form>
+{% endblock head %}

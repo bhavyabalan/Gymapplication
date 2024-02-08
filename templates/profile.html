@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block head %}
+    <h1>Enrollment Details</h1>
+
+    {% comment %} Contact Us Code {% endcomment %}
+    {% for post in posts %}
+        <ul class="list-group">
+            <li class="list-group-item bg-dark text-white">Name: {{ post.FullName }}</li>
+            <li class="list-group-item bg-dark text-white">Email: {{ post.Email }}</li>
+            <li class="list-group-item bg-dark text-white">Gender: {{ post.Gender }}</li>
+            <li class="list-group-item bg-dark text-white">PhoneNumber: {{ post.PhoneNumber }}</li>
+            <li class="list-group-item bg-dark text-white">DOB: {{ post.DOB }}</li>
+            <li class="list-group-item bg-dark text-white">MemberShipPlan: {{ post.SelectMembershipplan }}</li>
+            <li class="list-group-item bg-dark text-white">Trainer: {{ post.SelectTrainer }}</li>
+            <li class="list-group-item bg-dark text-white">Reference: {{ post.Reference }}</li>
+            <li class="list-group-item bg-dark text-white">Address: {{ post.Address }}</li>
+            <li class="list-group-item bg-dark text-white">PaymentStatus: {{ post.Paymentstatus }}</li>
+            <li class="list-group-item bg-dark text-white">Amount paid: {{ post.Price }}</li>
+            <li class="list-group-item bg-dark text-white">upcoming DueDate: {{ post.Duedate }}</li>
+            <li class="list-group-item bg-dark text-white">joining date: {{ post.timestamp }}</li>
+            <!-- Add other enrollment details as needed -->
+        </ul>
+    {% endfor %}
+{% endblock head %}

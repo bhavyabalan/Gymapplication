@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}
+Enrollment For Gym
+
+{% endblock title %}
+{% block head %}
+
+<h1>Join the best gym</h1>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% comment %} Contact Us Code {% endcomment%}
+<form action="/join" method="POST">
+    {% csrf_token %}
+      <div class="input-box">
+      <br>  <input type="text" placeholder="Enter your Fullname" name="FullName" required>
+      </div>
+          <div class="input-box">
+      <br>  <input type="email" placeholder="Enter your email" value="{{user.email}}" name="email" required>
+      </div>
+
+      <div>
+        <label for="gender"> <font color="orange">Gender</font></label>
+        <br>
+
+        <select  id="gender" name="gender" required>
+          <option selected>---------Select--------</option>
+           <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
+          <div class="input-box">
+      <br>  <input type="number" placeholder="Enter your phone number" name="PhoneNumber" required>
+      </div>
+       <div class="input-box">
+      <br>  <input type="date" placeholder="Date Of Birth" name="DOB" required>
+      </div>
+
+        <div class="input-box">
+         <br> <select class="input-box" id="domain" name="member" required>
+            <option selected>Select Membership Plan</option>
+            {% for p in Membership %}
+            <option value="{{p.plan}}">{{p.plan}}-{{p.price}}</option>
+            {% endfor %}
+          </select>
+
+      </div>
+      <div class="input-box">
+         <br> <select class="input-box" id="domain" name="trainer" required>
+            <option selected>------Select Trainer------ </option>
+            {% for p in SelectTrainer %}
+            <option value="{{p.name}}">{{p.name}}</option>
+            {% endfor %}
+          </select>
+
+      </div>
+        <div class="input-box">
+      <br>  <input type="text" placeholder="Refered By" name="reference" required>
+      </div>
+       <div class="input-box">
+      <br>  <input type="text" placeholder="Address" name="address" required>
+      </div>
+
+
+    <br>
+      <div>
+        <button class="btn btn-light" type="submit">Enroll</button>
+      </div>
+</form>
+
+{% endblock head %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}
+Attendance
+
+{% endblock title %}
+{% block head %}
+
+<h1>Apply Attendance</h1>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% comment %} Contact Us Code {% endcomment%}
+<form action="/attendance" method="POST">
+    {% csrf_token %}
+    <div class="input-box">
+      <br>  <input type="number" placeholder="Enter your phoneNumber" name="PhoneNumber" required>
+      </div>
+
+      <div>
+        <label for="workout"> <font color="orange">Workout</font></label>
+        <br>
+
+        <select  id="workout" name="workout" required>
+          <option selected>---------Select--------</option>
+           <option value="Biceps">Biceps</option>
+          <option value="Triceps">Triceps</option>
+            <option value="Shoulders">Shoulders</option>
+             <option value="Chest">Chest</option>
+             <option value="ABS">ABS</option>
+             <option value="Back">Back</option>
+             <option value="Warm Up">Warm Up</option>
+             <option value="Treadmill">Treadmill</option>
+        </select>
+      </div>
+
+      <div>
+          <label for="logintime" class="text-white">Log In</label>
+          <input type="time" name="logintime" id="logintime" placeholder="Login Time" required>
+      </div>
+
+     <div>
+          <label for="loginout" class="text-white">Log Out</label>
+          <input type="time" name="loginout" id="loginout" placeholder="Login Out" required>
+      </div>
+
+
+
+
+      <div class="input-box">
+         <br> <select class="input-box" id="domain" name="trainer" required>
+            <option selected>------Select Trainer------ </option>
+            {% for p in SelectTrainer %}
+            <option value="{{p.name}}">{{p.name}}</option>
+            {% endfor %}
+          </select>
+          
+      <div>
+      <br>  <button class="btn btn-light" type="submit">Apply Attendance</button>
+      </div>
+</form>
+
+{% endblock head %}
